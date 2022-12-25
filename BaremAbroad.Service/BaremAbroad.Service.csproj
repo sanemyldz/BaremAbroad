@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\BaremAbroad.Repository\BaremAbroad.Repository.csproj" />
+  </ItemGroup>
+
 </Project>
