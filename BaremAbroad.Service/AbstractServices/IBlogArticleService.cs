@@ -14,5 +14,7 @@ namespace BaremAbroad.Core.Services
         Task<BlogArticle> UpdateBlogArticleByIdAsync(BlogArticle blogArticle);
         Task<BlogArticle> AddBlogArticleAsync(BlogArticle blogArticle);
         Task<List<BlogArticle>> GetAllBlogArticlesAsync();
+        Task IncreaseUpvote();
+        Task IncreaseDownVote();
     }
 }
