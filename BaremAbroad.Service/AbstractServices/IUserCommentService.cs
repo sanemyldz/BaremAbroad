@@ -15,6 +15,5 @@ namespace BaremAbroad.Core.Services
         Task<UserComment> AddUserCommentAsync(UserComment userComment);
         Task<List<UserComment>> GetAllUserCommentsAsync(int userId);
         Task<List<UserComment>> GetAllArticleCommentsAsync(int articleId);
-
     }
 }

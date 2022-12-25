@@ -11,8 +11,8 @@ namespace BaremAbroad.Repository.Repositories
 {
     public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
-        private readonly DataContext _dataContext;
-        private readonly DbSet<T> _dbSet;
+        protected readonly DataContext _dataContext;
+        protected readonly DbSet<T> _dbSet;
 
         public GenericRepository(DataContext dataContext)
         {
@@ -23,6 +23,7 @@ namespace BaremAbroad.Repository.Repositories
         public async Task<T> AddAsync(T entity)
         {
             await _dbSet.AddAsync(entity);
+            await _dataContext.SaveChangesAsync();
             return entity;
         }
 
@@ -39,11 +40,15 @@ namespace BaremAbroad.Repository.Repositories
         public void Remove(T entity)
         {
             _dbSet.Remove(entity);
+            _dataContext.SaveChanges();
+
         }
 
         public void Update(T entity)
         {
             _dbSet.Update(entity);
+            _dataContext.SaveChanges();
+
         }
 
         public IQueryable<T> Where(Expression<Func<T, bool>> expression)
