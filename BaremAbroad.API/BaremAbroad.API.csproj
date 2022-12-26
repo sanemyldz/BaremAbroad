@@ -25,6 +25,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BaremAbroad.Repository\BaremAbroad.Repository.csproj" />
+    <ProjectReference Include="..\BaremAbroad.Service\BaremAbroad.Service.csproj" />
   </ItemGroup>
 
 </Project>
