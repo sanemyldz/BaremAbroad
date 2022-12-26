@@ -1,4 +1,5 @@
-﻿using BaremAbroad.Repository.Entities;
+﻿using BaremAbroad.Repository.DTOs;
+using BaremAbroad.Repository.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;

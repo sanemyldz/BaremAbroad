@@ -12,6 +12,5 @@ namespace BaremAbroad.Repository.AbstractRepositories
     {
         Task<int> UpVotesCount(int blogArticleId);
         Task<int> DownVotesCount(int blogArticleId);
-
     }
 }

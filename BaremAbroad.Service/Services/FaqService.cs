@@ -1,5 +1,7 @@
-﻿using BaremAbroad.Core.Repositories;
+﻿using AutoMapper;
+using BaremAbroad.Core.Repositories;
 using BaremAbroad.Core.Services;
+using BaremAbroad.Repository.DTOs;
 using BaremAbroad.Repository.Entities;
 using System;
 using System.Collections.Generic;
@@ -12,6 +14,7 @@ namespace BaremAbroad.Service.Services
     public class FaqService : IFaqService
     {
         private readonly IGenericRepository<Faq> _genericRepository;
+
         public FaqService(IGenericRepository<Faq> genericRepository)
         {
             _genericRepository = genericRepository;
