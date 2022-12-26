@@ -10,7 +10,7 @@ namespace BaremAbroad.Core.Services
     public interface IUserPasswordService
     {
         Task<UserPassword> GetUserPasswordByIdAsync(int userId);
-        Task<UserPassword> UpdateUserPasswordByIdAsync(UserPassword userPassword);
+        Task<UserPassword> UpdateUserPasswordAsync(UserPassword userPassword);
         Task<UserPassword> AddUserPasswordAsync(UserPassword userPassword);
     }
 }
