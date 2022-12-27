@@ -20,7 +20,11 @@ builder.Services.AddScoped<ISchoolService, SchoolService>();
 builder.Services.AddScoped<IUserCommentLogService, UserCommentLogService>();
 builder.Services.AddScoped<IUserCommentService, UserCommentService>();
 builder.Services.AddScoped<IUserPasswordService, UserPasswordService>();
-builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IProgramService, ProgramService>();
+builder.Services.AddScoped<ICountryService, CountryService>();
+builder.Services.AddScoped<IContentDetailService, ContentDetailService>();
+builder.Services.AddScoped<IBlogCategoryService, BlogCategoryService>();
+builder.Services.AddScoped<IBlockedWordService, BlockedWordService>();
 builder.Services.AddAutoMapper(typeof(MapProfile));
 
 
