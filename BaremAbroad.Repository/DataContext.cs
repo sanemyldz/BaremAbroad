@@ -31,6 +31,37 @@ namespace BaremAbroad.Repository
             .HasForeignKey(e => e.UserId)
             .OnDelete(DeleteBehavior.NoAction);
         }
+        public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+        {
+            var entries = this.ChangeTracker.Entries()
+                                   .Where(x => x.State == EntityState.Added)
+                                   .Select(x => x.Entity);
+
+            foreach (var entityEntry in entries)
+            {
+                var auditableEntity = entityEntry as BaseEntity;
+
+                if (auditableEntity != null)
+                {
+                    auditableEntity.CreateDate = DateTime.Now;
+                }
+            }
+
+            var modifiedEntries = this.ChangeTracker.Entries()
+                       .Where(x => x.State == EntityState.Modified)
+                       .Select(x => x.Entity);
+
+            foreach (var modifiedEntry in modifiedEntries)
+            {
+                var auditableEntity = modifiedEntry as BaseEntity;
+                if (auditableEntity != null)
+                {
+                    auditableEntity.UpdateDate = DateTime.Now;
+                }
+            }
+
+            return base.SaveChangesAsync();
+        }
     }
 
 }

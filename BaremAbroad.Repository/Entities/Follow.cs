@@ -2,15 +2,13 @@
 
 namespace BaremAbroad.Repository.Entities
 {
-    public class Follow
+    public class Follow : BaseEntity
     {
-        public int Id { get; set; }
-        public int FollowerId { get; set; }
-        public int FollowedUserId { get; set; }
-        public DateTime CreateTime { get; set; }
+        public int? FollowerId { get; set; }
+        public int? FollowedUserId { get; set; }
         [NotMapped]
-        public virtual User Follower { get; set; }
+        public virtual User? Follower { get; set; }
         [NotMapped]
-        public virtual User FollowedUser { get; set; }
+        public virtual User? FollowedUser { get; set; }
     }
 }

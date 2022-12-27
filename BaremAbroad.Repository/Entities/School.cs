@@ -6,15 +6,12 @@ using System.Threading.Tasks;
 
 namespace BaremAbroad.Repository.Entities
 {
-    public class School
+    public class School : BaseEntity
     {
-        public int Id { get; set; }
         public string Name { get; set; }
-        public int CountryId { get; set; }
-        public DateTime CreateTime { get; set; }
-        public DateTime UpdateTime { get; set; }
+        public int? CountryId { get; set; }
         public string Lang { get; set; }
-        public List<Program> Programs { get; set; }
-        public Country Country { get; set; }  
+        public ICollection<Program>? Programs { get; set; }
+        public Country? Country { get; set; }  
     }
 }

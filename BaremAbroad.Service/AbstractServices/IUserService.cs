@@ -1,4 +1,5 @@
-﻿using BaremAbroad.Repository.Entities;
+﻿using BaremAbroad.Repository.DTOs;
+using BaremAbroad.Repository.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,7 @@ namespace BaremAbroad.Core.Services
         Task<User> GetUserByIdAsync(int userId);
         Task<User> RemoveUserByIdAsync(int userId);
         Task<User> UpdateUserByIdAsync(User user);
-        Task<User> AddUserAsync(User user);
+        Task<UserDTO> AddUserAsync(UserDTO user);
         Task<List<User>> GetAllUsersAsync();
     }
 }

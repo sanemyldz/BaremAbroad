@@ -21,7 +21,7 @@ builder.Services.AddScoped<IUserCommentLogService, UserCommentLogService>();
 builder.Services.AddScoped<IUserCommentService, UserCommentService>();
 builder.Services.AddScoped<IUserPasswordService, UserPasswordService>();
 builder.Services.AddScoped<IUserService, UserService>();
-//builder.Services.AddAutoMapper(typeof(MapProfile));
+builder.Services.AddAutoMapper(typeof(MapProfile));
 
 
 //TODO: new scopes needed

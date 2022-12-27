@@ -8,7 +8,6 @@ namespace BaremAbroad.Repository.DTOs
 {
     public class UserDTO
     {
-        public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string MailAddress { get; set; }
@@ -17,7 +16,5 @@ namespace BaremAbroad.Repository.DTOs
         public string AdminLevel { get; set; }
         public string SocialRef { get; set; }
         public string Sub { get; set; }
-        public DateTime CreateTime { get; set; }
-        public DateTime UpdateTime { get; set; }
     }
 }

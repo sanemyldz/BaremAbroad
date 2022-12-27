@@ -2,11 +2,9 @@
 
 namespace BaremAbroad.Repository.Entities
 {
-    public class BlockedWord
+    public class BlockedWord:BaseEntity
     {
-        public int Id { get; set; }
         public string Word { get; set; }
-        public DateTime CreateTime { get; set; }
         public string Lang { get; set; }
     }
 }

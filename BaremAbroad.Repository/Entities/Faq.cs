@@ -6,13 +6,10 @@ using System.Threading.Tasks;
 
 namespace BaremAbroad.Repository.Entities
 {
-    public class Faq
+    public class Faq : BaseEntity
     {
-        public int Id { get; set; }
         public string Question { get; set; }
         public string Description { get; set; }
-        public DateTime CreateTime { get; set; }
-        public DateTime UpdateTime { get; set; }
         public string Lang { get; set; }
     }
 }

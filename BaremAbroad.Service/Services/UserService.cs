@@ -1,5 +1,7 @@
-﻿using BaremAbroad.Core.Repositories;
+﻿using AutoMapper;
+using BaremAbroad.Core.Repositories;
 using BaremAbroad.Core.Services;
+using BaremAbroad.Repository.DTOs;
 using BaremAbroad.Repository.Entities;
 using System;
 using System.Collections.Generic;
@@ -12,13 +14,16 @@ namespace BaremAbroad.Service.Services
     public class UserService : IUserService
     {
         private readonly IGenericRepository<User> _genericRepository;
-        public UserService(IGenericRepository<User> genericRepository)
+        private readonly IMapper _mapper;
+
+        public UserService(IGenericRepository<User> genericRepository, IMapper mapper)
         {
             _genericRepository = genericRepository;
+            _mapper = mapper;
         }
-        public async Task<User> AddUserAsync(User user)
+        public async Task<UserDTO> AddUserAsync(UserDTO user)
         {
-            await _genericRepository.AddAsync(user);
+            await _genericRepository.AddAsync(_mapper.Map<User>(user));
             return user;
         }
 

@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BaremAbroad.Repository.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20221225182946_Initial")]
+    [Migration("20221227002640_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -32,12 +32,15 @@ namespace BaremAbroad.Repository.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<DateTime>("CreateTime")
+                    b.Property<DateTime>("CreateDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Lang")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UpdateDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Word")
                         .IsRequired()
@@ -56,14 +59,14 @@ namespace BaremAbroad.Repository.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("BlogCategoryId")
+                    b.Property<int?>("BlogCategoryId")
                         .HasColumnType("int");
 
                     b.Property<string>("Content")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("CreateTime")
+                    b.Property<DateTime>("CreateDate")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("DownVotes")
@@ -73,7 +76,7 @@ namespace BaremAbroad.Repository.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("ProgramId")
+                    b.Property<int?>("ProgramId")
                         .HasColumnType("int");
 
                     b.Property<string>("Summary")
@@ -87,7 +90,7 @@ namespace BaremAbroad.Repository.Migrations
                     b.Property<int>("UpVotes")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("UpdateTime")
+                    b.Property<DateTime>("UpdateDate")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("UserId")
@@ -115,7 +118,7 @@ namespace BaremAbroad.Repository.Migrations
                     b.Property<int>("BlogCount")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("CreateTime")
+                    b.Property<DateTime>("CreateDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Lang")
@@ -126,7 +129,7 @@ namespace BaremAbroad.Repository.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("UpdateTime")
+                    b.Property<DateTime>("UpdateDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
@@ -142,7 +145,7 @@ namespace BaremAbroad.Repository.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<DateTime>("CreateTime")
+                    b.Property<DateTime>("CreateDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
@@ -153,14 +156,14 @@ namespace BaremAbroad.Repository.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("ProgramId")
+                    b.Property<int?>("ProgramId")
                         .HasColumnType("int");
 
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("UpdateTime")
+                    b.Property<DateTime>("UpdateDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
@@ -178,7 +181,7 @@ namespace BaremAbroad.Repository.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<DateTime>("CreateTime")
+                    b.Property<DateTime>("CreateDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
@@ -193,7 +196,7 @@ namespace BaremAbroad.Repository.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("UpdateTime")
+                    b.Property<DateTime>("UpdateDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
@@ -209,7 +212,7 @@ namespace BaremAbroad.Repository.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<DateTime>("CreateTime")
+                    b.Property<DateTime>("CreateDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
@@ -224,7 +227,7 @@ namespace BaremAbroad.Repository.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("UpdateTime")
+                    b.Property<DateTime>("UpdateDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
@@ -240,14 +243,17 @@ namespace BaremAbroad.Repository.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<DateTime>("CreateTime")
+                    b.Property<DateTime>("CreateDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("FollowedUserId")
+                    b.Property<int?>("FollowedUserId")
                         .HasColumnType("int");
 
-                    b.Property<int>("FollowerId")
+                    b.Property<int?>("FollowerId")
                         .HasColumnType("int");
+
+                    b.Property<DateTime>("UpdateDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<int?>("UserId")
                         .HasColumnType("int");
@@ -272,7 +278,7 @@ namespace BaremAbroad.Repository.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<DateTime>("CreateTime")
+                    b.Property<DateTime>("CreateDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
@@ -287,10 +293,10 @@ namespace BaremAbroad.Repository.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("SchoolId")
+                    b.Property<int?>("SchoolId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("UpdateTime")
+                    b.Property<DateTime>("UpdateDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
@@ -308,10 +314,10 @@ namespace BaremAbroad.Repository.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("CountryId")
+                    b.Property<int?>("CountryId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("CreateTime")
+                    b.Property<DateTime>("CreateDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Lang")
@@ -322,7 +328,7 @@ namespace BaremAbroad.Repository.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("UpdateTime")
+                    b.Property<DateTime>("UpdateDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
@@ -344,7 +350,7 @@ namespace BaremAbroad.Repository.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("CreateTime")
+                    b.Property<DateTime>("CreateDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("FirstName")
@@ -375,7 +381,7 @@ namespace BaremAbroad.Repository.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("UpdateTime")
+                    b.Property<DateTime>("UpdateDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
@@ -391,14 +397,14 @@ namespace BaremAbroad.Repository.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("BlogArticleId")
+                    b.Property<int?>("BlogArticleId")
                         .HasColumnType("int");
 
                     b.Property<string>("Content")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("CreateTime")
+                    b.Property<DateTime>("CreateDate")
                         .HasColumnType("datetime2");
 
                     b.Property<bool>("IsSuspended")
@@ -408,10 +414,13 @@ namespace BaremAbroad.Repository.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("UpdateTime")
+                    b.Property<DateTime>("UpdateDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("UserId")
+                    b.Property<int?>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("UserId1")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -419,6 +428,8 @@ namespace BaremAbroad.Repository.Migrations
                     b.HasIndex("BlogArticleId");
 
                     b.HasIndex("UserId");
+
+                    b.HasIndex("UserId1");
 
                     b.ToTable("UserComments");
                 });
@@ -435,10 +446,13 @@ namespace BaremAbroad.Repository.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("CreateTime")
+                    b.Property<DateTime>("CreateDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("UserCommentId")
+                    b.Property<DateTime>("UpdateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("UserCommentId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -456,7 +470,7 @@ namespace BaremAbroad.Repository.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<DateTime>("CreateTime")
+                    b.Property<DateTime>("CreateDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("HashedPassword")
@@ -467,16 +481,17 @@ namespace BaremAbroad.Repository.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("UpdateTime")
+                    b.Property<DateTime>("UpdateDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("UserId")
+                    b.Property<int?>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("UserId")
-                        .IsUnique();
+                        .IsUnique()
+                        .HasFilter("[UserId] IS NOT NULL");
 
                     b.ToTable("UserPasswords");
                 });
@@ -485,15 +500,11 @@ namespace BaremAbroad.Repository.Migrations
                 {
                     b.HasOne("BaremAbroad.Repository.Entities.BlogCategory", "BlogCategory")
                         .WithMany("BlogArticles")
-                        .HasForeignKey("BlogCategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("BlogCategoryId");
 
                     b.HasOne("BaremAbroad.Repository.Entities.Program", "Program")
                         .WithMany("BlogArticles")
-                        .HasForeignKey("ProgramId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ProgramId");
 
                     b.HasOne("BaremAbroad.Repository.Entities.User", "User")
                         .WithMany("BlogArticles")
@@ -512,9 +523,7 @@ namespace BaremAbroad.Repository.Migrations
                 {
                     b.HasOne("BaremAbroad.Repository.Entities.Program", "Program")
                         .WithMany("ContentDetails")
-                        .HasForeignKey("ProgramId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ProgramId");
 
                     b.Navigation("Program");
                 });
@@ -534,9 +543,7 @@ namespace BaremAbroad.Repository.Migrations
                 {
                     b.HasOne("BaremAbroad.Repository.Entities.School", "School")
                         .WithMany("Programs")
-                        .HasForeignKey("SchoolId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("SchoolId");
 
                     b.Navigation("School");
                 });
@@ -545,9 +552,7 @@ namespace BaremAbroad.Repository.Migrations
                 {
                     b.HasOne("BaremAbroad.Repository.Entities.Country", "Country")
                         .WithMany("Schools")
-                        .HasForeignKey("CountryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CountryId");
 
                     b.Navigation("Country");
                 });
@@ -556,15 +561,16 @@ namespace BaremAbroad.Repository.Migrations
                 {
                     b.HasOne("BaremAbroad.Repository.Entities.BlogArticle", "BlogArticle")
                         .WithMany("UserComments")
-                        .HasForeignKey("BlogArticleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("BlogArticleId");
 
                     b.HasOne("BaremAbroad.Repository.Entities.User", "User")
-                        .WithMany("UserComments")
+                        .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.NoAction);
+
+                    b.HasOne("BaremAbroad.Repository.Entities.User", null)
+                        .WithMany("UserComments")
+                        .HasForeignKey("UserId1");
 
                     b.Navigation("BlogArticle");
 
@@ -575,9 +581,7 @@ namespace BaremAbroad.Repository.Migrations
                 {
                     b.HasOne("BaremAbroad.Repository.Entities.UserComment", "UserComment")
                         .WithMany("UserCommentLogs")
-                        .HasForeignKey("UserCommentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserCommentId");
 
                     b.Navigation("UserComment");
                 });
@@ -586,9 +590,7 @@ namespace BaremAbroad.Repository.Migrations
                 {
                     b.HasOne("BaremAbroad.Repository.Entities.User", "User")
                         .WithOne("UserPassword")
-                        .HasForeignKey("BaremAbroad.Repository.Entities.UserPassword", "UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("BaremAbroad.Repository.Entities.UserPassword", "UserId");
 
                     b.Navigation("User");
                 });
@@ -630,8 +632,7 @@ namespace BaremAbroad.Repository.Migrations
 
                     b.Navigation("UserComments");
 
-                    b.Navigation("UserPassword")
-                        .IsRequired();
+                    b.Navigation("UserPassword");
                 });
 
             modelBuilder.Entity("BaremAbroad.Repository.Entities.UserComment", b =>

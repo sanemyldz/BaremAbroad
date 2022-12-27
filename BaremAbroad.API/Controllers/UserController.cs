@@ -33,7 +33,7 @@ namespace BaremAbroad.API.Controllers
             return NoContent();
         }
         [HttpPost("[action]")] 
-        public async Task<IActionResult> AddUserAsync(User user)
+        public async Task<IActionResult> AddUserAsync(UserDTO user)
         {
             return Ok(await _userService.AddUserAsync(user));
         }
