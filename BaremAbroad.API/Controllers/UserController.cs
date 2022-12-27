@@ -43,5 +43,6 @@ namespace BaremAbroad.API.Controllers
             return Ok(await _userService.GetAllUsersAsync());
         }
        
+
     }
 }

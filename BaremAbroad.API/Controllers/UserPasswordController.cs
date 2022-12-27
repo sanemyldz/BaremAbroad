@@ -26,10 +26,6 @@ namespace BaremAbroad.API.Controllers
             await _userPasswordService.UpdateUserPasswordAsync(userPassword);
             return NoContent();
         }
-        [HttpPost("[action]")]
-        public async Task<IActionResult> AddUserPasswordAsync(UserPassword userPassword)
-        {
-            return Ok(await _userPasswordService.AddUserPasswordAsync(userPassword));
-        }
+
     }
 }

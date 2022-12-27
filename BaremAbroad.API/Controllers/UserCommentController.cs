@@ -1,4 +1,5 @@
 ﻿using BaremAbroad.Core.Services;
+using BaremAbroad.Repository.DTOs;
 using BaremAbroad.Repository.Entities;
 using Microsoft.AspNetCore.Mvc;
 
@@ -31,7 +32,7 @@ namespace BaremAbroad.API.Controllers
             return NoContent();
         }
         [HttpPost("[action]")]
-        public async Task<IActionResult> AddUserCommentAsync(UserComment userComment)
+        public async Task<IActionResult> AddUserCommentAsync(UserCommentDTO userComment)
         {
             return Ok(await _userCommentService.AddUserCommentAsync(userComment));
         }

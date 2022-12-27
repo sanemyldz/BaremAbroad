@@ -1,6 +1,8 @@
-﻿using BaremAbroad.Core.Repositories;
+﻿using AutoMapper;
+using BaremAbroad.Core.Repositories;
 using BaremAbroad.Core.Services;
 using BaremAbroad.Repository;
+using BaremAbroad.Repository.DTOs;
 using BaremAbroad.Repository.Entities;
 using System;
 using System.Collections.Generic;
@@ -13,14 +15,21 @@ namespace BaremAbroad.Service.Services
     public class BlogArticleService : IBlogArticleService
     {
         private readonly IGenericRepository<BlogArticle> _genericRepository;
-
-        public BlogArticleService(IGenericRepository<BlogArticle> genericRepository)        {
+        private readonly IMapper _mapper;
+        public BlogArticleService(IGenericRepository<BlogArticle> genericRepository,IMapper mapper)        {
             _genericRepository = genericRepository;
+            _mapper = mapper;
         }
-        public async Task<BlogArticle> AddBlogArticleAsync(BlogArticle blogArticle)
+        public async Task<BlogArticleDTO> AddBlogArticleAsync(BlogArticleDTO blogArticleDTO)
         {
-            await _genericRepository.AddAsync(blogArticle);
-            return blogArticle;
+            var blogArticle = _mapper.Map<BlogArticle>(blogArticleDTO);
+
+            blogArticle.DownVotes = 0;
+            blogArticle.UpVotes = 0;
+
+            await _genericRepository.AddAsync(_mapper.Map<BlogArticle>(blogArticleDTO));
+
+            return blogArticleDTO;
         }
 
         public async Task<List<BlogArticle>> GetAllBlogArticlesAsync()

@@ -15,6 +15,12 @@ namespace BaremAbroad.Service.Mapping
         {
             CreateMap<User, UserDTO>().ReverseMap();
             CreateMap<Faq, FaqDTO>().ReverseMap();
+            CreateMap<UserPassword, UserPasswordDTO>().ReverseMap();
+            CreateMap<BlogArticle, BlogArticleDTO>().ReverseMap();
+            CreateMap<BlogCategory, BlogCategoryDTO>().ReverseMap();
+            CreateMap<Program, ProgramDTO>().ReverseMap();
+            CreateMap<UserComment, UserCommentDTO>().ReverseMap();
+  
         }
     }
 }

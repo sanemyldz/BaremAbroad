@@ -1,6 +1,9 @@
-﻿using BaremAbroad.Core.Repositories;
+﻿using AutoMapper;
+using BaremAbroad.Core.Repositories;
 using BaremAbroad.Core.Services;
+using BaremAbroad.Repository.DTOs;
 using BaremAbroad.Repository.Entities;
+using BaremAbroad.Repository.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,24 +15,24 @@ namespace BaremAbroad.Service.Services
     public class UserCommentService : IUserCommentService
     {
         private readonly IGenericRepository<UserComment> _genericRepository;
-        private readonly IGenericRepository<BlogArticle> _blogArticleRepository;
+        private readonly IMapper _mapper;
 
-        public UserCommentService(IGenericRepository<UserComment> genericRepository, IGenericRepository<BlogArticle> blogArticleRepository)
+
+        public UserCommentService(IGenericRepository<UserComment> genericRepository,IMapper mapper)
         {
             _genericRepository = genericRepository;
-            _blogArticleRepository = blogArticleRepository;
+            _mapper = mapper;
         }
 
-        public async Task<UserComment> AddUserCommentAsync(UserComment userComment)
+        public async Task<UserCommentDTO> AddUserCommentAsync(UserCommentDTO userComment)
         {
-            await _genericRepository.AddAsync(userComment);
+            await _genericRepository.AddAsync(_mapper.Map<UserComment>(userComment));
             return userComment;
         }
 
         public async Task<List<UserComment>> GetAllArticleCommentsAsync(int articleId)
         {
-            var articleComments = await _blogArticleRepository.GetByIdAsync(articleId);
-            return articleComments.UserComments.ToList();
+            return _genericRepository.GetAll().Where(x => x.BlogArticleId.Equals(articleId)).ToList();
         }
 
         public async Task<List<UserComment>> GetAllUserCommentsAsync()
@@ -37,9 +40,9 @@ namespace BaremAbroad.Service.Services
             return _genericRepository.GetAll().ToList();
         }
 
-        public async Task<UserComment> GetUserCommentByIdAsync(int userId)
+        public async Task<List<UserComment>> GetUserCommentByIdAsync(int userId)
         {
-            return await _genericRepository.GetByIdAsync(userId);
+            return _genericRepository.GetAll().Where(x => x.UserId.Equals(userId)).ToList();
         }
 
         public async Task<UserComment> RemoveUserCommentByIdAsync(int Id)

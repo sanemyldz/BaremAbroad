@@ -1,5 +1,6 @@
 ﻿using BaremAbroad.Core.Services;
 using BaremAbroad.Repository.AbstractRepositories;
+using BaremAbroad.Repository.DTOs;
 using BaremAbroad.Repository.Entities;
 using BaremAbroad.Service.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -11,6 +12,11 @@ namespace BaremAbroad.API.Controllers
     public class BlogArticleController : Controller
     {
         private readonly IBlogArticleService _blogArticleService;
+
+        public BlogArticleController(IBlogArticleService blogArticleService)
+        {
+            _blogArticleService = blogArticleService;
+        }
 
         [HttpGet("[action]")]
         public async Task<IActionResult> GetBlogArticleByIdAsync(int Id)
@@ -32,7 +38,7 @@ namespace BaremAbroad.API.Controllers
         }
 
         [HttpPost("[action]")]
-        public async Task<IActionResult> AddBlogArticleAsync(BlogArticle blogArticle)
+        public async Task<IActionResult> AddBlogArticleAsync(BlogArticleDTO blogArticle)
         {
             return Ok(await _blogArticleService.AddBlogArticleAsync(blogArticle));
         }

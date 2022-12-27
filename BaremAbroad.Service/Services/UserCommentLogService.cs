@@ -12,12 +12,10 @@ namespace BaremAbroad.Service.Services
     public class UserCommentLogService : IUserCommentLogService
     {
         private readonly IGenericRepository<UserCommentLog> _genericRepository;
-        private readonly IGenericRepository<UserComment> _userCommentRepository;
 
-        public UserCommentLogService(IGenericRepository<UserCommentLog> genericRepository, IGenericRepository<UserComment> userCommentRepository)
+        public UserCommentLogService(IGenericRepository<UserCommentLog> genericRepository)
         {
             _genericRepository = genericRepository;
-            _userCommentRepository = userCommentRepository;
         }
 
         public async Task<UserCommentLog> AddUserCommentLogAsync(UserCommentLog userCommentLog)
@@ -26,15 +24,14 @@ namespace BaremAbroad.Service.Services
             return userCommentLog;
         }
 
-        public async Task<List<UserCommentLog>> GetAllUserCommentLogsAsync(int id)
+        public async Task<List<UserCommentLog>> GetAllUserCommentLogsAsync()
         {
-            var userComment = await _userCommentRepository.GetByIdAsync(id);
-            return userComment.UserCommentLogs.ToList();
+            return _genericRepository.GetAll().ToList();
         }
 
-        public async Task<UserCommentLog> GetUserCommentLogByIdAsync(int Id)
+        public async Task<List<UserCommentLog>> GetUserCommentLogByIdAsync(int commentId)
         {
-            return await _genericRepository.GetByIdAsync(Id);
+            return _genericRepository.GetAll().Where(x => x.UserCommentId.Equals(commentId)).ToList();
         }
     }
 }

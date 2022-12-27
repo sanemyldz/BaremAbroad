@@ -1,5 +1,6 @@
 ﻿using BaremAbroad.Core.Repositories;
 using BaremAbroad.Core.Services;
+using BaremAbroad.Repository.DTOs;
 using BaremAbroad.Repository.Entities;
 using System;
 using System.Collections.Generic;
@@ -18,12 +19,6 @@ namespace BaremAbroad.Service.Services
         {
             _genericRepository = genericRepository;
             _userRepository = userRepository;
-        }
-
-        public async Task<UserPassword> AddUserPasswordAsync(UserPassword userPassword)
-        {
-            await _genericRepository.AddAsync(userPassword);
-            return userPassword;
         }
 
         public async Task<UserPassword> GetUserPasswordByIdAsync(int userId)

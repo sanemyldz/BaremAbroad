@@ -16,9 +16,9 @@ namespace BaremAbroad.API.Controllers
         }
 
         [HttpGet("[action]")]
-        public async Task<IActionResult> GetUserCommentLogByIdAsync(int Id)
+        public async Task<IActionResult> GetUserCommentLogByIdAsync(int commentId)
         {
-            return Ok(await _userCommentLogService.GetUserCommentLogByIdAsync(Id));
+            return Ok(await _userCommentLogService.GetUserCommentLogByIdAsync(commentId));
         }
 
         [HttpPost("[action]")]
@@ -28,9 +28,9 @@ namespace BaremAbroad.API.Controllers
         }
 
         [HttpGet("[action]")]
-        public async Task<IActionResult> GetAllUserCommentLogsAsync(int id)
+        public async Task<IActionResult> GetAllUserCommentLogsAsync()
         {
-            return Ok(await _userCommentLogService.GetAllUserCommentLogsAsync(id));
+            return Ok(await _userCommentLogService.GetAllUserCommentLogsAsync());
         }
     }
 }

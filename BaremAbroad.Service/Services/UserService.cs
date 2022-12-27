@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
 using BaremAbroad.Core.Repositories;
 using BaremAbroad.Core.Services;
+using BaremAbroad.Repository.AbstractRepositories;
 using BaremAbroad.Repository.DTOs;
 using BaremAbroad.Repository.Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +25,9 @@ namespace BaremAbroad.Service.Services
         }
         public async Task<UserDTO> AddUserAsync(UserDTO user)
         {
+            user.AdminLevel = "User";
+            var _user= _mapper.Map<User>(user);
+            _user.UserPassword.UserId = _user.Id;
             await _genericRepository.AddAsync(_mapper.Map<User>(user));
             return user;
         }

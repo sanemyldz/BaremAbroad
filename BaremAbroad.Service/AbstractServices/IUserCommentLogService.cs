@@ -9,8 +9,8 @@ namespace BaremAbroad.Core.Services
 {
     public interface IUserCommentLogService
     {
-        Task<UserCommentLog> GetUserCommentLogByIdAsync(int Id);
+        Task<List<UserCommentLog>> GetUserCommentLogByIdAsync(int commentId);
         Task<UserCommentLog> AddUserCommentLogAsync(UserCommentLog userCommentLog);
-        Task<List<UserCommentLog>> GetAllUserCommentLogsAsync(int id);
+        Task<List<UserCommentLog>> GetAllUserCommentLogsAsync();
     }
 }
