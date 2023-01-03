@@ -1,14 +1,9 @@
 ﻿using BaremAbroad.Repository.AbstractRepositories;
 using BaremAbroad.Repository.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BaremAbroad.Repository.Repositories
 {
-    public class BlogArticleRepository: GenericRepository<BlogArticle>, IBlogArticleRepository
+    public class BlogArticleRepository : GenericRepository<BlogArticle>, IBlogArticleRepository
     {
         public BlogArticleRepository(DataContext DataContext) : base(DataContext)
         {

@@ -1,10 +1,9 @@
 ﻿using BaremAbroad.Core.Services;
-using BaremAbroad.Repository.DTOs;
 using BaremAbroad.Repository.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BaremAbroad.API.Controllers
-{   
+{
     [Route("api/[controller]")]
     [ApiController]
     public class FaqController : Controller

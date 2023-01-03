@@ -1,11 +1,7 @@
-﻿using BaremAbroad.Core.Repositories;
-using BaremAbroad.Core.Services;
+﻿using BaremAbroad.Core.Services;
+using BaremAbroad.Repository.AbstractRepositories;
 using BaremAbroad.Repository.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Transactions;
 
 namespace BaremAbroad.Service.Services
 {
@@ -20,7 +16,18 @@ namespace BaremAbroad.Service.Services
         }
         public async Task<Follow> AddFollowEntryAsync(Follow follow)
         {
-            await _genericRepository.AddAsync(follow);
+            using (TransactionScope scope = new TransactionScope())
+            {
+                try
+                {
+                    await _genericRepository.AddAsync(follow);
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
+            }
             return follow;
         }
 

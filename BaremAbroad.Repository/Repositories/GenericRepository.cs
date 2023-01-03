@@ -1,11 +1,6 @@
-﻿using BaremAbroad.Core.Repositories;
+﻿using BaremAbroad.Repository.AbstractRepositories;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BaremAbroad.Repository.Repositories
 {

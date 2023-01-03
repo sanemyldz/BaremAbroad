@@ -1,0 +1,291 @@
+
+<!DOCTYPE html>
+<!-- Font Awesome -->
+<link
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    rel="stylesheet" />
+<!-- Google Fonts -->
+<link
+    href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+    rel="stylesheet" />
+<!-- MDB -->
+<link
+    href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.4.0/mdb.min.css"
+    rel="stylesheet" />
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title> Giriş Yap / Kayıt Ol</title>
+    <style>
+        .divButton{
+            margin: 15px;
+            text-align: center;
+        }
+        .btnSocial{
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #fff;
+            font-size: large;
+        }
+        .btnGoogle{
+            color: #fb1717;
+            border-color: #fb1717;
+        }
+        .btnGoogle:hover{
+            background-color: #c94b4b;
+            color: #fff;
+            border-color: #fff;
+        }
+        .btnFacebook{
+            color: #3030fb;
+            border-color: #3030fb;
+        }
+        .btnFacebook:hover{
+            background-color: #4b4bc9;
+            color: #fff;
+            border-color: #fff;
+        }
+        .btnLinkedin{
+            color: #0a66c2;
+            border-color: #0a66c2;
+        }
+        .btnLinkedin:hover{
+            background-color: #4b8bc9;
+            color: #fff;
+            border-color: #fff;
+        }
+
+    </style>
+</head>
+<body style="background-image: url('https://img.freepik.com/free-photo/neutral-abstract-texture-simple-background_53876-102511.jpg?size=626&ext=jpg'); background-repeat: repeat;">
+    <div style="background-image: url('https://www.tacbilisim.com/wp-content/uploads/2022/11/blog-nasil-acilir.jpg'); background-size: cover; background-repeat: no-repeat; background-position: center; height: 100vh; opacity: 90%;">
+        <div style="background-color: rgb(255, 255, 255); margin: auto; position: absolute; left: 50%; right: 50%; width: 900px; transform: translate(-50%, -50%); margin-top: 550px; border: medium; border-color: #1266f1; border-radius: 10px; opacity: 95%">
+            <!-- Pills navs -->
+            <div style="margin: 10px 10px 10px 10px;">
+                <ul class="nav nav-pills nav-justified mb-3" id="ex1" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link active" id="tab-login" data-mdb-toggle="pill" href="#pills-login" role="tab"
+                            aria-controls="pills-login" aria-selected="true">Giriş Yap</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" id="tab-register" data-mdb-toggle="pill" href="#pills-register" role="tab"
+                            aria-controls="pills-register" aria-selected="false">Kayıt Ol</a>
+                    </li>
+                </ul>
+                <!-- Pills navs -->
+
+                <!-- Pills content -->
+                <div class="tab-content">
+                    <div class="tab-pane fade show active" id="pills-login" role="tabpanel" aria-labelledby="tab-login">
+                        <div>
+                            <!-- Email input -->
+                            <div class="form-outline mb-4">
+                                <input type="email" id="loginEmail" class="form-control" />
+                                <label class="form-label" for="loginEmail">Email</label>
+                            </div>
+
+                            <!-- Password input -->
+                            <div class="form-outline mb-4">
+                                <input type="password" id="loginPassword" class="form-control" />
+                                <label class="form-label" for="loginPassword">Şifre</label>
+                            </div>
+
+                            <!-- 2 column grid layout -->
+                            <div class="row mb-4">
+                                <div class="col-md-6 d-flex justify-content-center">
+                                    <!-- Simple link -->
+                                </div>
+                            </div>
+
+                            <!-- Submit button -->
+                            <button class="btn btn-primary btn-block mb-4" onclick="login()">Giriş Yap</button>
+                            <div class="divButton">
+                                <button for="gapi" class="btnSocial btnGoogle" onclick="trySampleRequest()">G</button>
+                                <div id="gapi" class="g-signin2" data-onsuccess="onSignIn" style="display: none;"></div>
+                                <button class="btnSocial btnFacebook">f</button>
+                                <button class="btnSocial btnLinkedin">in</button>
+                            </div>
+                            <!-- Register buttons -->
+                            <div class="text-center">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade row" id="pills-register" role="tabpanel" aria-labelledby="tab-register">
+                        <div>
+                            <!-- Name input -->
+                            <div class="form-outline mb-4">
+                                <input type="text" id="registerName" maxlength="29" class="form-control" />
+                                <label class="form-label" for="registerName">İsim</label>
+                            </div>
+
+                            <!-- Surname input -->
+                            <div class="form-outline mb-4">
+                                <input type="text" id="registerSurname" maxlength="29" class="form-control" />
+                                <label class="form-label" for="registerSurname">Soyisim</label>
+                            </div>
+
+                            <!-- Info input -->
+                            <div class="form-outline mb-4">
+                                <input type="tel" id="registerInfo" maxlength="99" class="form-control" />
+                                <label class="form-label" for="registerInfo">Telefon Numarası</label>
+                            </div>
+
+                            <!-- Email input -->
+                            <div class="form-outline mb-4">
+                                <input type="email" id="registerEmail" maxlength="99" class="form-control" />
+                                <label class="form-label" for="registerEmail">Email</label>
+                            </div>
+
+                            <!-- Password input -->
+                            <div class="form-outline mb-4">
+                                <input type="password" id="registerPassword" maxlength="99" class="form-control" />
+                                <label class="form-label" for="registerPassword">Şifre</label>
+                            </div>
+
+                            <!-- Repeat Password input -->
+                            <div class="form-outline mb-4">
+                                <input type="password" id="registerRepeatPassword" maxlength="99" class="form-control" />
+                                <label class="form-label" for="registerRepeatPassword">Şifre Tekrar</label>
+                            </div>
+
+                            <!-- Submit button -->
+                            <button type="submit" class="btn btn-primary btn-block mb-3" onclick="register()">Kayıt Ol</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Pills content -->
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>
+<script>
+    function login(){
+        event.preventDefault();
+        var email = document.getElementById("loginEmail");
+        var password = document.getElementById("loginPassword");
+        emailValue = email.value;
+        passwordValue = password.value;
+        var data = {
+            "email": emailValue,
+            "password": passwordValue
+        };
+
+        /*fetch ("https://localhost:44312/api/Extended/loginCheck", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .then(data => {
+            if(data.success){
+                sessionStorage.setItem("token", data.token);
+                sessionStorage.setItem("userid", data.userid);
+                sessionStorage.setItem("adminLevel", data.adminLevel);
+                window.location.href = "index.html";
+            }
+            else{
+                alert(data.message);
+            }
+        })*/
+
+        if (emailValue != "info@sinansaglam.com.tr" || passwordValue != "123456") {
+            email.style.border = "2px solid red";
+            password.style.border = "2px solid red";
+            return;
+        }
+
+
+        sessionStorage.setItem("userid", 3);
+        sessionStorage.setItem("adminLevel", 63);
+        window.location.href = "index.html";
+    }
+
+    var YOUR_CLIENT_ID = '645963781474-r7ihsh64p08r4cn5qc83g1dqc6f91kde.apps.googleusercontent.com';
+    var YOUR_REDIRECT_URI = 'https://localhost:5500/signin-google';
+    var fragmentString = location.hash.substring(1);
+
+    // Parse query string to see if page request is coming from OAuth 2.0 server.
+    var params = {};
+    var regex = /([^&=]+)=([^&]*)/g, m;
+    while (m = regex.exec(fragmentString)) {
+        params[decodeURIComponent(m[1])] = decodeURIComponent(m[2]);
+    }
+    if (Object.keys(params).length > 0) {
+        localStorage.setItem('oauth2-test-params', JSON.stringify(params) );
+        if (params['state'] && params['state'] == 'try_sample_request') {
+        trySampleRequest();
+        }
+    }
+
+    // If there's an access token, try an API request.
+    // Otherwise, start OAuth 2.0 flow.
+    function trySampleRequest() {
+        var params = JSON.parse(localStorage.getItem('oauth2-test-params'));
+        if (params && params['access_token']) {
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET',
+            'https://www.googleapis.com/drive/v3/about?fields=user&' +
+            'access_token=' + params['access_token']);
+        xhr.onreadystatechange = function (e) {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+            console.log(xhr.response);
+            } else if (xhr.readyState === 4 && xhr.status === 401) {
+            // Token invalid, so prompt for user permission.
+            oauth2SignIn();
+            }
+        };
+        xhr.send(null);
+        } else {
+        oauth2SignIn();
+        }
+    }
+
+    /*
+    * Create form to request access token from Google's OAuth 2.0 server.
+    */
+    function oauth2SignIn() {
+        // Google's OAuth 2.0 endpoint for requesting an access token
+        var oauth2Endpoint = 'https://accounts.google.com/o/oauth2/v2/auth';
+
+        // Create element to open OAuth 2.0 endpoint in new window.
+        var form = document.createElement('form');
+        form.setAttribute('method', 'GET'); // Send as a GET request.
+        form.setAttribute('action', oauth2Endpoint);
+
+        // Parameters to pass to OAuth 2.0 endpoint.
+        var params = {'client_id': '645963781474-r7ihsh64p08r4cn5qc83g1dqc6f91kde.apps.googleusercontent.com',
+                    'redirect_uri': 'https://localhost:5500/signin-google',
+                    'scope': 'https://www.googleapis.com/auth/drive.metadata.readonly',
+                    'state': 'try_sample_request',
+                    'include_granted_scopes': 'true',
+                    'response_type': 'token'};
+
+        // Add form parameters as hidden input values.
+        for (var p in params) {
+        var input = document.createElement('input');
+        input.setAttribute('type', 'hidden');
+        input.setAttribute('name', p);
+        input.setAttribute('value', params[p]);
+        form.appendChild(input);
+        }
+
+        // Add form to page and submit it to open the OAuth 2.0 endpoint.
+        document.body.appendChild(form);
+        form.submit();
+    }
+
+    /*  *redirect to this url*
+    https://localhost:5500/signin-google#state=try_sample_request&access_token=ya29.a0AX9GBdUK8CvpFwbP30j4fX6ZVBTkJ0EQ1kgrDDBBQtc-VuStTs5eki6e4GDiEjTK28kf4jUw-PkK0S0wjP3nFeKVNhwb1Lt38zixLvUUcxBdHHZ9uJ9vwyuj_J-A1TQ_L7FNCUEGnsgENM53tqxzPR3eHpaANQaCgYKAdUSARISFQHUCsbCjuSgFMtFGvjW9kjRH_p8-w0165&token_type=Bearer&expires_in=3599&scope=email%20profile%20https://www.googleapis.com/auth/userinfo.email%20https://www.googleapis.com/auth/userinfo.profile%20https://www.googleapis.com/auth/drive.metadata.readonly%20openid&authuser=0&prompt=none
+    */
+
+</script>
+        
+<script
+    type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.4.0/mdb.min.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>

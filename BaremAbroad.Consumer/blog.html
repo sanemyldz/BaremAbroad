@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog</title>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+  <style>
+    .card:nth-child(even){
+      background-color: #ececec;
+    }
+  </style>
+</head>
+<body onload="onLoad()" style="background-image: url('https://img.freepik.com/free-photo/neutral-abstract-texture-simple-background_53876-102511.jpg?size=626&ext=jpg'); background-repeat: repeat;">
+    
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg bg-light" style="margin-bottom: 20px;">
+          <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">Brame Broad</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                  <a class="nav-link " aria-current="page" href="#">Denklik Sağladığımız Ülkeler</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link " href="blog.html">Kullanıcılarımızdan Yorumlar</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link " href="newblogcontent.html">Blog Yazısı Ekle</a>
+                </li>
+              </ul>
+              <form class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+                <button id="clickForLogin" class="btn btn-outline-danger" style="margin-left: 20px; width: 150px;" type="submit">Çıkış Yap</button>
+              </form>
+            </div>
+          </div>
+        </nav>
+        <!-- Page Header-->
+        <div id="roof" class="row">
+            <div class="offset-2 card col-8 offset-2">
+                <div class="card-header">
+                  Featured
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title">Special title treatment</h5>
+                  <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                  <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+              </div>
+        </div>
+
+        <script>
+          const blogCommentDetailURL = "blogcommentdetail.html";
+          const roof = document.getElementById("roof");
+
+          // create a list of blog posts that include a title, summar, writer, date, content, upvotes, downvotes, userID
+          var blogPosts = []
+          /*[
+            {
+              title: "Bu Eğitim Çok İyi",
+              summary: "Özet olarak 3 dil öğrendim",
+              writer: "Salim Kaya",
+              date: "2022-10-11",
+              content: "This is the content of the blog post",
+              upvotes: 23,
+              downvotes: 4,
+              userID: 1,
+            },{
+              title: "Bu eğitim birçok kişiyi bir araya getirdi",
+              summary: "Özet olarak keyifli insanlar ile tanıştım",
+              writer: "Ali Özbek",
+              date: "2022-11-10",
+              content: "Bu eğitim 6 farklı ülkeden 8'şer kişiyi bir araya getirdi. İlk başlarda birbirimizi tanımak için basit oyunlar, isimlerimiz ile alakalı etkinlikler yaptık. Devamında eğitici görevler alarak kendimizi geliştirdik",
+              upvotes: 85,
+              downvotes: 15,
+              userID: 2,
+            },{
+              title: "Gittiğim ülkedeki yaşadığım zorluklar",
+              summary: "Tanıştığım insanların yaptığı bazı dışlamalar",
+              writer: "Sema Deniz",
+              date: "2022-11-10",
+              content: "This is the content of the blog post",
+              upvotes: 45,
+              downvotes: 3,
+              userID: 3,
+            },{
+              title: "Bu eğitim kişisel gelişimim için çok faydalı oldu",
+              summary: "Yaptığımız etkinlikler sayesinde kendimi geliştirdim",
+              writer: "Fatih Kaya",
+              date: "2022-11-10",
+              content: "This is the content of the blog post",
+              upvotes: 38,
+              downvotes: 9,
+              userID: 4,
+            },{
+              title: "Bu Eğitim Çok İyi",
+              summary: "Özet olarak 3 dil öğrendim",
+              writer: "İrem Koç",
+              date: "2022-10-11",
+              content: "This is the content of the blog post",
+              upvotes: 27,
+              downvotes: 6,
+              userID: 5,
+            },{
+              title: "Bu eğitimde çok iyi bir şeyler öğrendim",
+              summary: "Özet olarak keyifli insanlar ile tanıştım",
+              writer: "Derya Sönmez",
+              date: "2022-11-10",
+              content: "This is the content of the blog post",
+              upvotes: 56,
+              downvotes: 22,
+              userID: 6,
+            },{
+              title: "Bu eğitimde çok iyi bir şeyler öğrendim",
+              summary: "Özet olarak keyifli insanlar ile tanıştım",
+              writer: "Cafer Kutlu",
+              date: "2022-11-10",
+              content: "This is the content of the blog post",
+              upvotes: 10,
+              downvotes: 1,
+              userID: 7,
+            },{
+              title: "Bu eğitimde çok iyi bir şeyler öğrendim",
+              summary: "Özet olarak keyifli insanlar ile tanıştım",
+              writer: "Deniz Eren",
+              date: "2022-11-10",
+              content: "This is the content of the blog post",
+              upvotes: 5,
+              downvotes: 0,
+              userID: 8,
+            }
+          ];*/
+
+          function onLoad(){
+            if (sessionStorage.getItem("userid" == null)) {
+              window.location.href = "login.html";
+            }
+            fetch("https://localhost:7037/api/BlogArticle/GetAllBlogArticles")
+            .then(response => response.json())
+            .then(data => {
+              blogPosts = data;
+              fillScreen();
+              console.log(data);
+            })
+          }
+
+          function fillScreen(){
+            roof.innerHTML = "";
+          
+            for (let i = 0; i < blogPosts.length; i++) {
+              const blogContent = document.createElement("div");
+              blogContent.className = "card";
+              blogContent.classList.add("offset-2");
+              blogContent.classList.add("col-8");
+              blogContent.classList.add("offset-2");
+              blogContent.classList.add("mb-3");
+              blogContent.innerHTML = "";
+              const revisionDate = blogPosts[i].updateDate ? new Date(blogPosts[i].updateDate) : null;
+              let revisionDateString  = "";
+              if (revisionDate != null)
+               revisionDateString = revisionDate.getDate() + "/" + (revisionDate.getMonth() + 1) + "/" + revisionDate.getFullYear();
+
+              blogContent.innerHTML = `
+              <div class="card-header">
+                <span style='font-weight: 700'>${blogPosts[i].userId}</span> 
+              </div>
+              <div class="card-body">
+                <h5 class="card-title">${blogPosts[i].title}</h5>
+                <p class="card-text">${blogPosts[i].summary ?? ""}</p>
+                <a href="${blogPosts[i].userId ? blogCommentDetailURL + '?id=' + blogPosts[i].id : "errorpage.html"}" class="btn btn-outline-info float-end">Devamını oku</a>
+              `;
+              blogContent.innerHTML += `
+              <div class="card-footer text-muted">
+                ${revisionDateString}
+                <div class="float-end">
+                  <span class="badge bg-success bg-gradient rounded-pill" style="border: 1px green solid; background-color: white !important; color: green;">${blogPosts[i].upVotes}</span>
+                  <span class="badge bg-danger bg-gradient rounded-pill" style="border: 1px red solid; background-color: white !important; color: red;">${blogPosts[i].downVotes}</span>
+                </div>
+              </div>
+              `;
+
+              roof.appendChild(blogContent);
+            }
+          }
+
+          function loadPosts(){
+            // create a ajax request and send to API to get the posts
+          }
+
+        </script>
+
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+</body>
+</html>

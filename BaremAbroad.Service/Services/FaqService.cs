@@ -1,13 +1,7 @@
-﻿using AutoMapper;
-using BaremAbroad.Core.Repositories;
-using BaremAbroad.Core.Services;
-using BaremAbroad.Repository.DTOs;
+﻿using BaremAbroad.Core.Services;
+using BaremAbroad.Repository.AbstractRepositories;
 using BaremAbroad.Repository.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Transactions;
 
 namespace BaremAbroad.Service.Services
 {
@@ -21,7 +15,19 @@ namespace BaremAbroad.Service.Services
         }
         public async Task<Faq> AddFaqAsync(Faq faq)
         {
-            await _genericRepository.AddAsync(faq);
+            using (TransactionScope scope = new TransactionScope())
+            {
+                try
+                {
+                    await _genericRepository.AddAsync(faq);
+                    scope.Complete();
+                }
+                catch (Exception)
+                {
+                    scope.Dispose();
+                }
+            }
+
             return faq;
         }
 

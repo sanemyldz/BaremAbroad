@@ -1,6 +1,5 @@
 ﻿using BaremAbroad.Core.Services;
-using BaremAbroad.Repository.DTOs;
-using BaremAbroad.Repository.Entities;
+using BaremAbroad.Repository.DTOs.User;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BaremAbroad.API.Controllers
@@ -9,8 +8,9 @@ namespace BaremAbroad.API.Controllers
     [ApiController]
     public class UserController : Controller
     {
+        //login control, create user, yeni blog, yeni yorum, getAllBlog(SP var raporda), getVommentsOfBlogArticle 
         private readonly IUserService _userService;
-        
+
         public UserController(IUserService userService)
         {
             _userService = userService;
@@ -20,20 +20,19 @@ namespace BaremAbroad.API.Controllers
         {
             return Ok(await _userService.GetUserByIdAsync(userId));
         }
-        [HttpDelete("[action]")] 
+        [HttpDelete("[action]")]
         public async Task<IActionResult> RemoveUserByIdAsync(int userId)
         {
             await _userService.RemoveUserByIdAsync(userId);
             return Ok("User Removed Succesfully!");
         }
-        [HttpPut("[action]")] 
-        public async Task<IActionResult> UpdateUserByIdAsync(User user)
+        [HttpPut("[action]")]
+        public async Task<IActionResult> UpdateUserByIdAsync(UpdateUserDTO user)
         {
-            await _userService.UpdateUserByIdAsync(user);
-            return NoContent();
+            return Ok(await _userService.UpdateUserByIdAsync(user));
         }
-        [HttpPost("[action]")] 
-        public async Task<IActionResult> AddUserAsync(UserDTO user)
+        [HttpPost("[action]")]
+        public async Task<IActionResult> AddUserAsync(CreateUserDTO user)
         {
             return Ok(await _userService.AddUserAsync(user));
         }
@@ -42,7 +41,5 @@ namespace BaremAbroad.API.Controllers
         {
             return Ok(await _userService.GetAllUsersAsync());
         }
-       
-
     }
 }

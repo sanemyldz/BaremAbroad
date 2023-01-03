@@ -1,14 +1,9 @@
 ﻿using AutoMapper;
-using BaremAbroad.Core.Repositories;
 using BaremAbroad.Core.Services;
+using BaremAbroad.Repository.AbstractRepositories;
 using BaremAbroad.Repository.DTOs;
 using BaremAbroad.Repository.Entities;
-using BaremAbroad.Repository.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Transactions;
 
 namespace BaremAbroad.Service.Services
 {
@@ -18,7 +13,7 @@ namespace BaremAbroad.Service.Services
         private readonly IMapper _mapper;
 
 
-        public UserCommentService(IGenericRepository<UserComment> genericRepository,IMapper mapper)
+        public UserCommentService(IGenericRepository<UserComment> genericRepository, IMapper mapper)
         {
             _genericRepository = genericRepository;
             _mapper = mapper;
@@ -26,7 +21,18 @@ namespace BaremAbroad.Service.Services
 
         public async Task<UserCommentDTO> AddUserCommentAsync(UserCommentDTO userComment)
         {
-            await _genericRepository.AddAsync(_mapper.Map<UserComment>(userComment));
+            using (TransactionScope scope = new TransactionScope())
+            {
+                try
+                {
+                    await _genericRepository.AddAsync(_mapper.Map<UserComment>(userComment));
+                    scope.Complete();
+                }
+                catch (Exception)
+                {
+                    scope.Dispose();
+                }
+            }
             return userComment;
         }
 

@@ -1,5 +1,4 @@
 ﻿using BaremAbroad.Core.Services;
-using BaremAbroad.Service.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BaremAbroad.API.Controllers

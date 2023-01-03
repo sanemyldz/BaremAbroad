@@ -1,19 +1,15 @@
-﻿using BaremAbroad.Repository.DTOs;
-using BaremAbroad.Repository.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using BaremAbroad.Repository.DTOs.User;
 
 namespace BaremAbroad.Core.Services
 {
     public interface IUserService
     {
-        Task<User> GetUserByIdAsync(int userId);
-        Task<User> RemoveUserByIdAsync(int userId);
-        Task<User> UpdateUserByIdAsync(User user);
-        Task<UserDTO> AddUserAsync(UserDTO user);
-        Task<List<User>> GetAllUsersAsync();
+        Task<UserResponseDTO> GetUserByIdAsync(int userId);
+        Task RemoveUserByIdAsync(int userId);
+        Task<UserResponseDTO> UpdateUserByIdAsync(UpdateUserDTO user);
+        Task<UserResponseDTO> AddUserAsync(CreateUserDTO user);
+        [Obsolete]
+        Task<bool> LoginCheckAsync(LoginUserDTO user);
+        Task<List<UserResponseDTO>> GetAllUsersAsync();
     }
 }

@@ -1,12 +1,6 @@
-﻿using BaremAbroad.Core.Repositories;
-using BaremAbroad.Core.Services;
-using BaremAbroad.Repository.DTOs;
+﻿using BaremAbroad.Core.Services;
+using BaremAbroad.Repository.AbstractRepositories;
 using BaremAbroad.Repository.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BaremAbroad.Service.Services
 {
@@ -23,7 +17,7 @@ namespace BaremAbroad.Service.Services
 
         public async Task<UserPassword> GetUserPasswordByIdAsync(int userId)
         {
-            var user= await _userRepository.GetByIdAsync(userId);
+            var user = await _userRepository.GetByIdAsync(userId);
             return user.UserPassword;
         }
 

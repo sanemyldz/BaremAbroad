@@ -1,8 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace BaremAbroad.Repository.Entities
+﻿namespace BaremAbroad.Repository.Entities
 {
-    public class BlockedWord:BaseEntity
+    public class BlockedWord : BaseEntity
     {
         public string Word { get; set; }
         public string Lang { get; set; }

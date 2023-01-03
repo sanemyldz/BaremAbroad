@@ -1,11 +1,7 @@
-﻿using BaremAbroad.Core.Repositories;
-using BaremAbroad.Core.Services;
+﻿using BaremAbroad.Core.Services;
+using BaremAbroad.Repository.AbstractRepositories;
 using BaremAbroad.Repository.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Transactions;
 
 namespace BaremAbroad.Service.Services
 {
@@ -20,8 +16,20 @@ namespace BaremAbroad.Service.Services
 
         public async Task<UserCommentLog> AddUserCommentLogAsync(UserCommentLog userCommentLog)
         {
-            await _genericRepository.AddAsync(userCommentLog);
-            return userCommentLog;
+            using (TransactionScope scope = new TransactionScope())
+            {
+                try
+                {
+                    await _genericRepository.AddAsync(userCommentLog);
+                    scope.Complete();
+
+                }
+                catch (Exception)
+                {
+                    scope.Dispose();
+                }
+                return userCommentLog;
+            }
         }
 
         public async Task<List<UserCommentLog>> GetAllUserCommentLogsAsync()

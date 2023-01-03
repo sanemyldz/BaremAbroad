@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BaremAbroad.Repository.Entities
+﻿namespace BaremAbroad.Repository.Entities
 {
     public class BlogArticle : BaseEntity
     {
@@ -18,7 +12,7 @@ namespace BaremAbroad.Repository.Entities
         public string Content { get; set; }
         public string Lang { get; set; }
         public virtual BlogCategory? BlogCategory { get; set; }
-        public virtual Program? Program { get; set; }
+        public virtual Program Program { get; set; }
         public virtual ICollection<UserComment>? UserComments { get; set; }
         public virtual User? User { get; set; }
     }

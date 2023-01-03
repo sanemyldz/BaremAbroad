@@ -20,8 +20,4 @@
     </PackageReference>
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\BaremAbroad.Core\BaremAbroad.Core.csproj" />
-  </ItemGroup>
-
 </Project>

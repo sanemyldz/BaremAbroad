@@ -344,9 +344,8 @@ namespace BaremAbroad.Repository.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("AdminLevel")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("AdminLevel")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("CreateDate")
                         .HasColumnType("datetime2");
@@ -372,11 +371,9 @@ namespace BaremAbroad.Repository.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SocialRef")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Sub")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("UpdateDate")
@@ -630,7 +627,8 @@ namespace BaremAbroad.Repository.Migrations
 
                     b.Navigation("UserComments");
 
-                    b.Navigation("UserPassword");
+                    b.Navigation("UserPassword")
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("BaremAbroad.Repository.Entities.UserComment", b =>

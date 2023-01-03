@@ -1,4 +1,3 @@
-using BaremAbroad.Core.Repositories;
 using BaremAbroad.Core.Services;
 using BaremAbroad.Repository;
 using BaremAbroad.Repository.AbstractRepositories;
@@ -25,12 +24,22 @@ builder.Services.AddScoped<ICountryService, CountryService>();
 builder.Services.AddScoped<IContentDetailService, ContentDetailService>();
 builder.Services.AddScoped<IBlogCategoryService, BlogCategoryService>();
 builder.Services.AddScoped<IBlockedWordService, BlockedWordService>();
+builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddAutoMapper(typeof(MapProfile));
-
 
 //TODO: new scopes needed
 
 builder.Services.AddDbContext<DataContext>(option => option.UseSqlServer(builder.Configuration.GetConnectionString("DbConnect")));
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: "MyPolicy",
+        policy =>
+        {
+            policy.WithOrigins("http://127.0.0.1:5500/")
+                    .WithMethods("PUT", "DELETE", "GET", "POST");
+        });
+});
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -51,5 +60,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseCors();
 
 app.Run();

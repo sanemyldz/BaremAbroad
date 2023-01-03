@@ -1,8 +1,5 @@
 ﻿using BaremAbroad.Core.Services;
-using BaremAbroad.Repository.AbstractRepositories;
-using BaremAbroad.Repository.DTOs;
-using BaremAbroad.Repository.Entities;
-using BaremAbroad.Service.Services;
+using BaremAbroad.Repository.DTOs.BlogArticle;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BaremAbroad.API.Controllers
@@ -21,37 +18,43 @@ namespace BaremAbroad.API.Controllers
         [HttpGet("[action]")]
         public async Task<IActionResult> GetBlogArticleByIdAsync(int Id)
         {
+            HttpContext.Response.Headers.Add("Access-Control-Allow-Origin", "http://127.0.0.1:5500");
             return Ok(await _blogArticleService.GetBlogArticleByIdAsync(Id));
         }
 
         [HttpDelete("[action]")]
         public async Task<IActionResult> RemoveBlogArticleByIdAsync(int Id)
         {
-            return Ok(await _blogArticleService.RemoveBlogArticleByIdAsync(Id));
+            HttpContext.Response.Headers.Add("Access-Control-Allow-Origin", "http://127.0.0.1:5500");
+            await _blogArticleService.RemoveBlogArticleByIdAsync(Id);
+            return Ok();
         }
 
         [HttpPut("[action]")]
-        public async Task<IActionResult> UpdateBlogArticleAsync(BlogArticle blogArticle)
+        public async Task<IActionResult> UpdateBlogArticleAsync(UpdateBlogArticleDTO blogArticle)
         {
-            await _blogArticleService.UpdateBlogArticleAsync(blogArticle);
-            return NoContent();
+            HttpContext.Response.Headers.Add("Access-Control-Allow-Origin", "http://127.0.0.1:5500");
+            return Ok(await _blogArticleService.UpdateBlogArticleAsync(blogArticle));
         }
 
         [HttpPost("[action]")]
-        public async Task<IActionResult> AddBlogArticleAsync(BlogArticleDTO blogArticle)
+        public async Task<IActionResult> AddBlogArticleAsync(CreateBlogArticleDTO blogArticle)
         {
+            HttpContext.Response.Headers.Add("Access-Control-Allow-Origin", "http://127.0.0.1:5500");
             return Ok(await _blogArticleService.AddBlogArticleAsync(blogArticle));
         }
 
         [HttpGet("[action]")]
         public async Task<IActionResult> GetAllBlogArticlesAsync()
         {
+            HttpContext.Response.Headers.Add("Access-Control-Allow-Origin", "http://127.0.0.1:5500");
             return Ok(await _blogArticleService.GetAllBlogArticlesAsync());
         }
 
         [HttpPut("[action]")]
         public async Task<IActionResult> IncreaseUpvote(int articleId)
         {
+            HttpContext.Response.Headers.Add("Access-Control-Allow-Origin", "http://127.0.0.1:5500");
             await _blogArticleService.IncreaseUpvote(articleId);
             return NoContent();
         }
@@ -59,6 +62,7 @@ namespace BaremAbroad.API.Controllers
         [HttpPut("[action]")]
         public async Task<IActionResult> IncreaseDownVote(int articleId)
         {
+            HttpContext.Response.Headers.Add("Access-Control-Allow-Origin", "http://127.0.0.1:5500");
             await _blogArticleService.IncreaseDownVote(articleId);
             return NoContent();
         }

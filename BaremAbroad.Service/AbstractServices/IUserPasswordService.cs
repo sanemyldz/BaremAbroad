@@ -1,10 +1,4 @@
-﻿using BaremAbroad.Repository.DTOs;
-using BaremAbroad.Repository.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using BaremAbroad.Repository.Entities;
 
 namespace BaremAbroad.Core.Services
 {
